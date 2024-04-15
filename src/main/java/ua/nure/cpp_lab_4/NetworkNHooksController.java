@@ -71,18 +71,20 @@ public class NetworkNHooksController implements ShortcutHandler {
     }
     private void openPort() {
         if (this.server != null) return;
-        new Thread(() -> {
+        Thread thr = new Thread(() -> {
             try {
                 server = new RelayServer();
                 server.startServer();
             } catch (IOException e) {
                 System.out.println("Error server creating: " + e.getMessage());
             }
-        }).start();
+        });
+        thr.setDaemon(true);
+        thr.start();
     }
     private void connectToPort() {
         if (client != null) return;
-        new Thread(() -> {
+        Thread thr = new Thread(() -> {
             try {
                 client = new Client(wrapperPane);
                 client.connect("localhost", 8800);
@@ -90,7 +92,9 @@ public class NetworkNHooksController implements ShortcutHandler {
                 client = null;
                 System.out.println("Error connecting to the server: " + e.getMessage());
             }
-        }).start();
+        });
+        thr.setDaemon(true);
+        thr.start();
     }
     private void sendMessage() {
         if (client == null) return;
@@ -103,6 +107,5 @@ public class NetworkNHooksController implements ShortcutHandler {
     private void clear() {
         wrapperPane.getChildren().clear();
     }
-
 
 }

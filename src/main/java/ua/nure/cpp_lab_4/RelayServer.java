@@ -28,7 +28,7 @@ public class RelayServer {
             if (createIOStreams()) return;
             connectClient();
 
-            new Thread(() -> {
+            Thread thr = new Thread(() -> {
                 try {
                     String inputLine;
                     while ((inputLine = clientsR[clientId].readLine()) != null) {
@@ -42,7 +42,9 @@ public class RelayServer {
                 } finally {
                     closeSocket();
                 }
-            }).start();
+            });
+            thr.setDaemon(true);
+            thr.start();
         }
     }
 
@@ -95,8 +97,7 @@ public class RelayServer {
                 input.close();
             }
             socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 }

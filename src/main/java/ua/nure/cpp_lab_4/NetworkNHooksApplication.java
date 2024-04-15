@@ -14,11 +14,11 @@ public class NetworkNHooksApplication extends Application {
     public void setShortcutHandler(ShortcutHandler handler) {
         this.shortcutHandler = handler;
     }
-
+    NetworkNHooksController controller;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(NetworkNHooksApplication.class.getResource("network-n-hooks.fxml"));
-        NetworkNHooksController controller = new NetworkNHooksController();
+        controller = new NetworkNHooksController();
         fxmlLoader.setController(controller);
         setShortcutHandler(controller);
 

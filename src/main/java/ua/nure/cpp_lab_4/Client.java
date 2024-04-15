@@ -27,7 +27,7 @@ public class Client {
         receiveMessages();
     }
     private void receiveMessages() {
-        new Thread(() -> {
+        Thread thr = new Thread(() -> {
             try {
                 String inputLine, key, value;
                 while ((inputLine = input.readLine()) != null) {
@@ -39,7 +39,9 @@ public class Client {
             } catch (IOException e) {
                 System.out.println("Server connection lost.");
             }
-        }).start();
+        });
+        thr.setDaemon(true);
+        thr.start();
     }
     public void sendMessage(String message) {
         output.println("client=" + CLIENT_ID + "?" + message);
