@@ -1,9 +1,6 @@
 package ua.nure.cpp_lab_4;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -13,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NetworkNHooksController implements ShortcutHandler {
+public class NetworkNHooksController implements IShortcutHandler {
     @FXML
     public Button openPortButton = new Button();
     @FXML

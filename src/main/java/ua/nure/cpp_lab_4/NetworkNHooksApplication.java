@@ -3,15 +3,14 @@ package ua.nure.cpp_lab_4;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class NetworkNHooksApplication extends Application {
-    private ShortcutHandler shortcutHandler;
+    private IShortcutHandler shortcutHandler;
 
-    public void setShortcutHandler(ShortcutHandler handler) {
+    public void setShortcutHandler(IShortcutHandler handler) {
         this.shortcutHandler = handler;
     }
     NetworkNHooksController controller;
